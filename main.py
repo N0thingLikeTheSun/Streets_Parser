@@ -9,7 +9,7 @@ HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
 }
-File = 'YourDistrict.csv'
+FILE_NAME = 'YourDistrict.csv'
 
 
 def get_html(url, params=''):
@@ -41,7 +41,7 @@ for item_2 in href:
                 item_3.get('href')
             )
 print('finish step 2')
-with open(File, 'w', newline='',encoding='utf-16') as file:
+with open(FILE_NAME, 'w', newline='',encoding='utf-16') as file:
     writer = csv.writer(file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for item_4 in href_2:
         html_3 = get_html(item_4)
