@@ -1,18 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 import csv
-import codecs
 
-# import pandas as pd
 
 HOST = 'https://postindex.pp.ua/'
-URL = 'https://postindex.pp.ua/uk/district/vinnytska/index.html'
+URL = 'https://postindex.pp.ua/uk/district/YourDistrict/index.html'
 HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
 }
-File = 'vinnytska.csv'
+File = 'YourDistrict.csv'
 
 
 def get_html(url, params=''):
@@ -27,7 +24,7 @@ items = soup.find_all('a', class_=False)
 href = []
 for item in items:
     if item.get('href').startswith(
-            'https://postindex.pp.ua/uk/district/vinnytska/') and not item.get('href').endswith('misto.html') and not item.get('href').endswith('misto/vinnytsia.html') and not item.get('href').endswith('index.html'):  #  and not item.get('href').endswith('odesa.html'):
+            'https://postindex.pp.ua/uk/district/YourDistrict/') and not item.get('href').endswith('misto.html') and not item.get('href').endswith('misto/YourDistrict.html') and not item.get('href').endswith('index.html'):
         href.append(
             item.get('href')
         )
@@ -39,8 +36,8 @@ for item_2 in href:
     soup_2 = BeautifulSoup(html_2, 'html.parser')
     items_2 = soup_2.find_all('a', class_=False)
     for item_3 in items_2:
-        if item_3.get('href').startswith('https://postindex.pp.ua/uk/street/vinnytska/') and not item_3.get(
-                'href').endswith('misto.html') and not item_3.get('href').endswith('misto/vinnytsia.html') and not item_3.get('href').endswith('index.html'): #
+        if item_3.get('href').startswith('https://postindex.pp.ua/uk/street/YourDistrict/') and not item_3.get(
+                'href').endswith('misto.html') and not item_3.get('href').endswith('misto/YourDistrict.html') and not item_3.get('href').endswith('index.html'): #
             href_2.append(
                 item_3.get('href')
             )
