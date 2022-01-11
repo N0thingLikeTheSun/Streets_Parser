@@ -28,7 +28,6 @@ for item in items:
         href.append(
             item.get('href')
         )
-print(href)
 print('finish step 1')
 href_2 = []
 for item_2 in href:
@@ -41,9 +40,7 @@ for item_2 in href:
             href_2.append(
                 item_3.get('href')
             )
-print(href_2)
 print('finish step 2')
-q = 0.1
 with open(File, 'w', newline='',encoding='utf-16') as file:
     writer = csv.writer(file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for item_4 in href_2:
@@ -51,8 +48,6 @@ with open(File, 'w', newline='',encoding='utf-16') as file:
         soup_3 = BeautifulSoup(html_3, 'html.parser')
         items_3 = soup_3.find_all('td', class_=False)
         items_4 = soup_3.find_all('h2', class_=False)
-        print('finish step:', q)
-        q += 0.1
         for item_5 in items_3:
             for item_6 in items_4:
                 if item_6.get_text().startswith('Вулиці'):
