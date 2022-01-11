@@ -23,11 +23,11 @@ soup = BeautifulSoup(html, 'html.parser')
 items = soup.find_all('a', class_=False)
 href = []
 for item in items:
-    if item.get('href').startswith(
-            'https://postindex.pp.ua/uk/district/YourDistrict/') and not item.get('href').endswith('misto.html') and not item.get('href').endswith('misto/YourDistrict.html') and not item.get('href').endswith('index.html'):
-        href.append(
-            item.get('href')
-        )
+    if item.get('href').startswith('https://postindex.pp.ua/uk/district/YourDistrict/') \
+            and not item.get('href').endswith('misto.html') \
+            and not item.get('href').endswith('misto/YourDistrict.html') \
+            and not item.get('href').endswith('index.html'):
+        href.append(item.get('href'))
 print('finish step 1')
 href_2 = []
 for item_2 in href:
@@ -35,13 +35,13 @@ for item_2 in href:
     soup_2 = BeautifulSoup(html_2, 'html.parser')
     items_2 = soup_2.find_all('a', class_=False)
     for item_3 in items_2:
-        if item_3.get('href').startswith('https://postindex.pp.ua/uk/street/YourDistrict/') and not item_3.get(
-                'href').endswith('misto.html') and not item_3.get('href').endswith('misto/YourDistrict.html') and not item_3.get('href').endswith('index.html'): #
-            href_2.append(
-                item_3.get('href')
-            )
+        if item_3.get('href').startswith('https://postindex.pp.ua/uk/street/YourDistrict/') \
+                and not item_3.get('href').endswith('misto.html') \
+                and not item_3.get('href').endswith('misto/YourDistrict.html') \
+                and not item_3.get('href').endswith('index.html'):
+            href_2.append(item_3.get('href'))
 print('finish step 2')
-with open(FILE_NAME, 'w', newline='',encoding='utf-16') as file:
+with open(FILE_NAME, 'w', newline='', encoding='utf-16') as file:
     writer = csv.writer(file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for item_4 in href_2:
         html_3 = get_html(item_4)
@@ -66,7 +66,8 @@ with open(FILE_NAME, 'w', newline='',encoding='utf-16') as file:
                         'алея') or item_5.get_text().startswith('спуск') or item_5.get_text().startswith(
                         'проїзд') or item_5.get_text().startswith('площа') or item_5.get_text().startswith(
                         'жилий масив') or item_5.get_text().startswith('мікрорайон') or item_5.get_text().startswith(
-                        'майдан') or item_5.get_text().startswith('шосе') or item_5.get_text().startswith('бульвар')  and not item_5.get_text().endswith('без назви'):
+                        'майдан') or item_5.get_text().startswith('шосе') or item_5.get_text().startswith('бульвар')  \
+                            and not item_5.get_text().endswith('без назви'):
                         writer.writerow([item_5.get_text(), item_10])
 print('finish step 3')
 
